@@ -1,0 +1,574 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI 시대, 미래모빌리티의 방향성</title>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <!-- Google Fonts (Noto Sans KR) -->
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;700;900&display=swap" rel="stylesheet">
+
+    <!-- Custom Styles -->
+    <style>
+        body {
+            font-family: 'Noto Sans KR', sans-serif;
+            background-color: #f8fafc;
+            color: #1e293b;
+        }
+
+        /* Palette Definition (Used in Tailwind config mostly, but noted here) 
+           Primary: #312e81 (Indigo 900)
+           Secondary: #06b6d4 (Cyan 500)
+           Accent: #f97316 (Orange 500)
+        */
+
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 650px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 350px;
+            max-height: 400px;
+        }
+
+        /* Responsive height adjustments for charts */
+        @media (max-width: 768px) {
+            .chart-container {
+                height: 300px;
+            }
+        }
+
+        .gradient-text {
+            background: linear-gradient(90deg, #312e81, #06b6d4);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        /* CSS Venn Diagram Implementation */
+        .venn-container {
+            position: relative;
+            width: 300px;
+            height: 300px;
+            margin: 0 auto;
+        }
+        .venn-circle {
+            position: absolute;
+            width: 180px;
+            height: 180px;
+            border-radius: 50%;
+            mix-blend-mode: multiply; /* Simulates transparency overlap */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            text-align: center;
+            font-size: 1.1rem;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        }
+        .venn-top {
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: rgba(6, 182, 212, 0.8); /* Cyan */
+        }
+        .venn-left {
+            bottom: 0;
+            left: 0;
+            background-color: rgba(49, 46, 129, 0.8); /* Indigo */
+        }
+        .venn-right {
+            bottom: 0;
+            right: 0;
+            background-color: rgba(249, 115, 22, 0.8); /* Orange */
+        }
+        .venn-center-label {
+            position: absolute;
+            top: 55%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: #fff;
+            font-weight: 900;
+            font-size: 1.2rem;
+            text-shadow: 0px 0px 4px rgba(0,0,0,0.8);
+            z-index: 10;
+        }
+    </style>
+    
+    <!-- Narrative Plan Summary
+        1. Intro: AI Mobility context.
+        2. Anxiety Chart: Why we need change.
+        3. Change 1: Safety (Bar Chart).
+        4. Change 2: Operations (CSS Flow).
+        5. Change 3: Team Connection (CSS Venn).
+        6. Change 4: Edge/Cloud (Comparison).
+        7. Change 5: Trust (Radar Chart).
+        8. Conclusion: Future Skills.
+    -->
+</head>
+<body class="antialiased">
+
+    <!-- Header Section -->
+    <header class="bg-white shadow-lg sticky top-0 z-50">
+        <div class="max-w-6xl mx-auto px-4 py-4 flex justify-between items-center">
+            <h1 class="text-xl font-bold text-indigo-900">Future Mobility Outlook</h1>
+            <span class="text-sm text-gray-500 font-medium">Source: HyperNetwork Keynote</span>
+        </div>
+    </header>
+
+    <main class="max-w-6xl mx-auto px-4 py-8 space-y-16">
+
+        <!-- Title Block -->
+        <section class="text-center space-y-4 py-10">
+            <span class="inline-block py-1 px-3 rounded-full bg-cyan-100 text-cyan-800 text-sm font-semibold mb-2">AI Era Analysis</span>
+            <h1 class="text-4xl md:text-6xl font-black leading-tight">
+                AI 시대,<br> <span class="gradient-text">미래모빌리티</span>는 어디로 가는가?
+            </h1>
+            <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                자율주행 기술 경쟁을 넘어, <strong>"안전·운영·신뢰"</strong>를 중심으로 재편되는 5가지 핵심 변화를 분석합니다.
+            </p>
+        </section>
+
+        <!-- Section 1: The Context (Anxiety) -->
+        <section class="grid grid-cols-1 md:grid-cols-2 gap-10 items-center bg-white p-8 rounded-2xl shadow-md border-l-8 border-indigo-900">
+            <div class="space-y-4">
+                <h2 class="text-2xl font-bold text-gray-800">1. 무엇이 우리를 불안하게 하는가?</h2>
+                <p class="text-gray-600 leading-relaxed">
+                    자동차가 '스마트폰'처럼 소프트웨어 중심으로 진화(SDV)하고 있지만, 운전자의 불안은 해소되지 않았습니다. 
+                    사람들이 가장 두려워하는 것은 차량 성능의 부족이 아니라, <strong>예측 불가능한 도로 위의 변수</strong>들입니다.
+                    미래 모빌리티의 첫 번째 과제는 이 '예측 불가능성'을 통제하는 것입니다.
+                </p>
+                <div class="bg-gray-50 p-4 rounded-lg border border-gray-200">
+                    <strong class="text-indigo-700 block mb-2">핵심 인사이트</strong>
+                    <p class="text-sm text-gray-600">불안의 근원은 기계적 결함이 아닌 '상황적 위험'입니다. AI는 이를 해결할 유일한 도구입니다.</p>
+                </div>
+            </div>
+            
+            <!-- Chart Container -->
+            <div class="flex flex-col items-center">
+                <h3 class="text-lg font-semibold text-center mb-4 text-gray-700">운전 중 주요 불안 요인 (설문 데이터 기반)</h3>
+                <div class="chart-container">
+                    <canvas id="anxietyChart"></canvas>
+                </div>
+                <p class="text-center text-xs text-gray-400 mt-2">※ 강연 내 '10초 참여 질문' 기반 재구성</p>
+            </div>
+        </section>
+
+        <!-- Section 2: Change 1 (Safety Paradigm) -->
+        <section class="space-y-8">
+            <div class="text-center max-w-3xl mx-auto">
+                <h2 class="text-3xl font-bold text-gray-800">변화 1: 달리는 기술에서 <span class="text-cyan-600">예방하는 기술</span>로</h2>
+                <p class="mt-4 text-gray-600 text-lg">
+                    AI 안전의 핵심은 '완벽한 주행'이 아니라, 사고 발생 전 위험 신호를 탐지하고 <strong>실제 조치(Action)</strong>로 이어지게 하는 것입니다.
+                    단순 경고는 현장에서 무시되기 쉽습니다.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 bg-white p-6 rounded-xl shadow-sm">
+                <div class="flex flex-col justify-center order-2 md:order-1">
+                    <div class="chart-container">
+                        <canvas id="safetyChart"></canvas>
+                    </div>
+                </div>
+                <div class="space-y-6 flex flex-col justify-center order-1 md:order-2">
+                    <div class="bg-orange-50 p-6 rounded-lg border-l-4 border-orange-500">
+                        <h4 class="font-bold text-orange-800 text-lg mb-2">기존 접근 (Traditional)</h4>
+                        <p class="text-gray-700">사고 발생 후 대응하거나, 운전자에게 단순 경고음(Beep)만 전달. <br>→ <strong>실제 사고 감소율 한계</strong></p>
+                    </div>
+                    <div class="bg-cyan-50 p-6 rounded-lg border-l-4 border-cyan-500">
+                        <h4 class="font-bold text-cyan-800 text-lg mb-2">AI 기반 접근 (Future)</h4>
+                        <p class="text-gray-700">졸음, 빗길, 급끼어들기 등 패턴을 사전 탐지 후 개입 및 프로토콜 가동. <br>→ <strong>'탐지'가 아닌 '조치' 중심</strong></p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 3: Change 2 (Operations Automation) -->
+        <section class="bg-slate-900 text-white rounded-3xl p-8 md:p-12 overflow-hidden relative">
+            <!-- Decorative background element -->
+            <div class="absolute top-0 right-0 w-64 h-64 bg-indigo-500 rounded-full mix-blend-overlay filter blur-3xl opacity-20"></div>
+
+            <div class="relative z-10">
+                <h2 class="text-3xl font-bold mb-6">변화 2: 주행을 넘어 <span class="text-cyan-400">운영의 자동화</span>로</h2>
+                <p class="text-gray-300 text-lg mb-10 max-w-4xl">
+                    AI는 운전대만 잡는 것이 아닙니다. 관제, 배차, 정비, 보고서 작성 등 
+                    사람이 하던 복잡한 <strong>운영 프로세스(Workflow)</strong>를 자동화하여 비용을 획기적으로 줄입니다.
+                </p>
+
+                <!-- Process Flow Visualization (HTML/CSS/Tailwind) -->
+                <div class="grid grid-cols-1 md:grid-cols-5 gap-4 items-center text-center">
+                    
+                    <!-- Step 1 -->
+                    <div class="bg-slate-800 p-6 rounded-xl border border-slate-700 hover:border-cyan-400 transition duration-300">
+                        <div class="text-3xl mb-3">⚠️</div>
+                        <h3 class="font-bold text-lg">이상 징후<br>감지</h3>
+                        <p class="text-xs text-gray-400 mt-2">센서/AI 자동 식별</p>
+                    </div>
+
+                    <!-- Arrow -->
+                    <div class="hidden md:block text-2xl text-cyan-500 animate-pulse">➜</div>
+                    <div class="md:hidden text-2xl text-cyan-500 rotate-90 py-2">➜</div>
+
+                    <!-- Step 2 -->
+                    <div class="bg-slate-800 p-6 rounded-xl border border-slate-700 hover:border-cyan-400 transition duration-300">
+                        <div class="text-3xl mb-3">🤖</div>
+                        <h3 class="font-bold text-lg">AI 분류 &<br>자동 전파</h3>
+                        <p class="text-xs text-gray-400 mt-2">담당자 즉시 배정</p>
+                    </div>
+
+                    <!-- Arrow -->
+                    <div class="hidden md:block text-2xl text-cyan-500 animate-pulse">➜</div>
+                    <div class="md:hidden text-2xl text-cyan-500 rotate-90 py-2">➜</div>
+
+                    <!-- Step 3 -->
+                    <div class="bg-slate-800 p-6 rounded-xl border border-slate-700 hover:border-cyan-400 transition duration-300">
+                        <div class="text-3xl mb-3">✅</div>
+                        <h3 class="font-bold text-lg">조치 및<br>보고서 생성</h3>
+                        <p class="text-xs text-gray-400 mt-2">행정 업무 0%화</p>
+                    </div>
+
+                </div>
+                <div class="mt-8 text-center">
+                    <span class="inline-block bg-indigo-600 text-white px-4 py-1 rounded-full text-sm font-semibold shadow-lg">결과: 현장 업무 효율 극대화 및 누락 방지</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 4: Change 3 (The One Team Concept) -->
+        <section class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center py-10">
+            <div class="flex justify-center">
+                <!-- CSS Venn Diagram -->
+                <div class="venn-container">
+                    <div class="venn-circle venn-top">
+                        <span>사람<br>(상태/피로도)</span>
+                    </div>
+                    <div class="venn-circle venn-left">
+                        <span>자동차<br>(차량 데이터)</span>
+                    </div>
+                    <div class="venn-circle venn-right">
+                        <span>도로<br>(환경/인프라)</span>
+                    </div>
+                    <div class="venn-center-label">
+                        AI 안전<br>생태계
+                    </div>
+                </div>
+            </div>
+            
+            <div class="space-y-6">
+                <h2 class="text-3xl font-bold text-gray-800">변화 3: 차, 사람, 도로가 <span class="text-indigo-600">한 팀(One Team)</span>으로</h2>
+                <div class="prose text-gray-600">
+                    <p>
+                        "차만 똑똑해서는 안전할 수 없습니다."
+                        진정한 미래 모빌리티 안전은 세 가지 요소의 결합에서 나옵니다.
+                    </p>
+                    <ul class="list-none space-y-3 mt-4">
+                        <li class="flex items-start">
+                            <span class="text-indigo-600 mr-2">●</span>
+                            <span><strong>사람(Human):</strong> 운전자의 피로도, 주의력 상태를 실시간 모니터링</span>
+                        </li>
+                        <li class="flex items-start">
+                            <span class="text-indigo-600 mr-2">●</span>
+                            <span><strong>자동차(Vehicle):</strong> 기계적 결함 및 주행 데이터 분석</span>
+                        </li>
+                        <li class="flex items-start">
+                            <span class="text-indigo-600 mr-2">●</span>
+                            <span><strong>도로(Road):</strong> 날씨, 블랙아이스, 어린이 보호구역 등 환경 변수</span>
+                        </li>
+                    </ul>
+                    <p class="mt-4 font-semibold text-indigo-800">
+                        결론: "사람이 중심에 있는 안전(Human-Centric Safety)"이 표준이 됩니다.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 5: Change 4 & 5 (Architecture & Trust) -->
+        <section class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+            
+            <!-- Change 4 Card -->
+            <div class="bg-white p-8 rounded-2xl shadow-md lg:col-span-1 border-t-4 border-cyan-500">
+                <h3 class="text-xl font-bold mb-4 text-gray-800">변화 4: 하이브리드 아키텍처</h3>
+                <p class="text-sm text-gray-500 mb-6">모든 처리를 클라우드에서 할 수 없습니다. 속도와 비용 효율을 위한 최적의 구조가 필요합니다.</p>
+                
+                <div class="space-y-4">
+                    <div class="bg-gray-100 p-4 rounded-lg">
+                        <div class="flex justify-between items-center mb-2">
+                            <span class="font-bold text-gray-700">현장 (Edge)</span>
+                            <span class="text-xs bg-red-100 text-red-600 px-2 py-0.5 rounded">즉시성</span>
+                        </div>
+                        <p class="text-xs text-gray-600">차량 단말에서 실시간 판단. <br>통신 단절 시에도 안전 기능 작동.</p>
+                    </div>
+                    <div class="flex justify-center text-gray-400 text-2xl">⬇️ ⬆️</div>
+                    <div class="bg-indigo-50 p-4 rounded-lg">
+                        <div class="flex justify-between items-center mb-2">
+                            <span class="font-bold text-indigo-700">중앙 (Cloud)</span>
+                            <span class="text-xs bg-blue-100 text-blue-600 px-2 py-0.5 rounded">지능화</span>
+                        </div>
+                        <p class="text-xs text-gray-600">대규모 데이터 학습, 모델 업데이트, <br>전체 최적화 및 분석 리포팅.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Change 5 Card (Radar Chart) -->
+            <div class="bg-white p-8 rounded-2xl shadow-md lg:col-span-2 border-t-4 border-orange-500">
+                <div class="flex flex-col md:flex-row h-full">
+                    <div class="md:w-1/2 pr-0 md:pr-6 mb-6 md:mb-0">
+                        <h3 class="text-xl font-bold mb-4 text-gray-800">변화 5: 신뢰 경쟁 (Trust Design)</h3>
+                        <p class="text-gray-600 text-sm mb-4">
+                            기술 성능보다 중요한 것은 <strong>"누가 책임을 지고, 어떻게 보호하는가"</strong>입니다. 
+                            공공, 보험, 운수업계와의 협력에서 가장 먼저 요구되는 것은 신뢰 설계입니다.
+                        </p>
+                        <ul class="text-sm text-gray-600 space-y-2">
+                            <li>🔒 <strong>보안 (Security):</strong> 해킹 및 데이터 유출 방지</li>
+                            <li>🛡️ <strong>프라이버시 (Privacy):</strong> 개인정보 비식별화 및 보호</li>
+                            <li>⚖️ <strong>책임 (Responsibility):</strong> 사고 시 명확한 인과관계 증명</li>
+                        </ul>
+                    </div>
+                    <div class="md:w-1/2 flex items-center justify-center">
+                        <div class="chart-container" style="height: 300px;">
+                            <canvas id="trustChart"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Conclusion & Future Skills -->
+        <section class="bg-gradient-to-r from-indigo-900 to-indigo-800 text-white rounded-3xl p-10 mt-12">
+            <h2 class="text-2xl md:text-3xl font-bold text-center mb-8">미래의 주인공들이 준비해야 할 3가지 역량</h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 text-center">
+                <!-- Skill 1 -->
+                <div class="bg-white/10 backdrop-blur-sm p-6 rounded-xl border border-white/20 hover:bg-white/20 transition">
+                    <div class="text-4xl mb-4">🧠</div>
+                    <h3 class="text-xl font-bold mb-2">사람을 이해하는 능력</h3>
+                    <p class="text-sm text-gray-300">기술 이전에 인간의 신체적/심리적 상태를 이해해야 안전을 설계할 수 있습니다.</p>
+                </div>
+                
+                <!-- Skill 2 -->
+                <div class="bg-white/10 backdrop-blur-sm p-6 rounded-xl border border-white/20 hover:bg-white/20 transition">
+                    <div class="text-4xl mb-4">📊</div>
+                    <h3 class="text-xl font-bold mb-2">데이터를 읽는 힘</h3>
+                    <p class="text-sm text-gray-300">수많은 신호 속에서 무엇이 '위험'이고 무엇이 '성과'인지 해석해내야 합니다.</p>
+                </div>
+                
+                <!-- Skill 3 -->
+                <div class="bg-white/10 backdrop-blur-sm p-6 rounded-xl border border-white/20 hover:bg-white/20 transition">
+                    <div class="text-4xl mb-4">🤝</div>
+                    <h3 class="text-xl font-bold mb-2">신뢰를 설계하는 감각</h3>
+                    <p class="text-sm text-gray-300">보안, 프라이버시, 책임 프로토콜을 기술과 함께 설계할 수 있어야 합니다.</p>
+                </div>
+            </div>
+
+            <div class="mt-12 text-center border-t border-white/20 pt-8">
+                <p class="text-lg md:text-xl font-light italic">
+                    "AI 시대의 미래모빌리티는<br> <span class="font-bold text-cyan-300">더 빨리 달리는 차</span>가 아니라 <span class="font-bold text-orange-300">더 안전하고 믿을 수 있는 이동 경험</span>입니다."
+                </p>
+                <p class="text-sm mt-4 opacity-70">- 하이퍼네트워크 대표 김지연 -</p>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-100 py-8 text-center text-gray-500 text-sm">
+        <p>Generated for Academic & Industrial Review</p>
+        <p class="mt-2">Based on source material: AI Era, Future Mobility Direction</p>
+    </footer>
+
+    <!-- JavaScript Implementation -->
+    <script>
+        // --- 1. Utility Functions ---
+
+        // Label Wrapping Logic (> 16 chars)
+        function wrapLabel(str) {
+            if (str.length <= 16) return str;
+            const words = str.split(' ');
+            const lines = [];
+            let currentLine = words[0];
+
+            for (let i = 1; i < words.length; i++) {
+                if ((currentLine + " " + words[i]).length < 16) {
+                    currentLine += " " + words[i];
+                } else {
+                    lines.push(currentLine);
+                    currentLine = words[i];
+                }
+            }
+            lines.push(currentLine);
+            return lines;
+        }
+
+        // Process Labels for a Chart Config
+        function processLabels(labels) {
+            return labels.map(label => wrapLabel(label));
+        }
+
+        // Shared Tooltip Configuration (Mandatory)
+        const sharedTooltipConfig = {
+            callbacks: {
+                title: function(tooltipItems) {
+                    const item = tooltipItems[0];
+                    let label = item.chart.data.labels[item.dataIndex];
+                    if (Array.isArray(label)) {
+                        return label.join(' ');
+                    } else {
+                        return label;
+                    }
+                }
+            }
+        };
+
+        // Global Chart Defaults
+        Chart.defaults.font.family = "'Noto Sans KR', sans-serif";
+        Chart.defaults.color = '#475569';
+        Chart.defaults.responsive = true;
+        Chart.defaults.maintainAspectRatio = false;
+
+        // --- 2. Chart Implementations ---
+
+        // Chart 1: Anxiety Factors (Donut)
+        const ctxAnxiety = document.getElementById('anxietyChart').getContext('2d');
+        const anxietyLabels = ['졸음 및 피로', '비/눈 등 악천후', '갑작스런 끼어들기', '골목/변수 구간'];
+        const anxietyData = [30, 20, 25, 25]; // Estimated distribution based on speech emphasis
+
+        new Chart(ctxAnxiety, {
+            type: 'doughnut',
+            data: {
+                labels: processLabels(anxietyLabels),
+                datasets: [{
+                    data: anxietyData,
+                    backgroundColor: [
+                        '#312e81', // Indigo (Primary) - Sleep (Internal)
+                        '#06b6d4', // Cyan (Secondary) - Weather (Environment)
+                        '#f97316', // Orange (Accent) - Cut-in (External Human)
+                        '#94a3b8'  // Gray - Variables
+                    ],
+                    borderWidth: 2,
+                    borderColor: '#ffffff'
+                }]
+            },
+            options: {
+                plugins: {
+                    legend: { position: 'bottom' },
+                    tooltip: sharedTooltipConfig,
+                    title: {
+                        display: false
+                    }
+                },
+                cutout: '60%'
+            }
+        });
+
+        // Chart 2: Safety Shift (Grouped Bar)
+        const ctxSafety = document.getElementById('safetyChart').getContext('2d');
+        const safetyLabels = ['단순 경고 인지율', '사고 실질 예방율', '운전자 만족도', '운영 효율성'];
+        
+        new Chart(ctxSafety, {
+            type: 'bar',
+            data: {
+                labels: processLabels(safetyLabels),
+                datasets: [
+                    {
+                        label: '기존 (경고 위주)',
+                        data: [80, 30, 40, 50], // High alert, low action
+                        backgroundColor: '#cbd5e1', // Muted gray
+                        borderRadius: 4
+                    },
+                    {
+                        label: '미래 AI (조치 위주)',
+                        data: [95, 85, 90, 95], // High detection AND action
+                        backgroundColor: '#06b6d4', // Vibrant Cyan
+                        borderRadius: 4
+                    }
+                ]
+            },
+            options: {
+                indexAxis: 'y', // Horizontal bar for better label reading
+                plugins: {
+                    legend: { position: 'bottom' },
+                    tooltip: sharedTooltipConfig
+                },
+                scales: {
+                    x: {
+                        beginAtZero: true,
+                        max: 100,
+                        grid: { display: false }
+                    },
+                    y: {
+                        grid: { display: false }
+                    }
+                }
+            }
+        });
+
+        // Chart 3: Trust (Radar)
+        const ctxTrust = document.getElementById('trustChart').getContext('2d');
+        
+        new Chart(ctxTrust, {
+            type: 'radar',
+            data: {
+                labels: processLabels(['데이터 보안성', '개인정보 보호', '책임 소재 명확성', '기술적 성능', '가격 경쟁력']),
+                datasets: [{
+                    label: '미래 모빌리티 필수 가치',
+                    data: [95, 95, 90, 80, 70], // Trust elements are prioritized over pure tech/price
+                    fill: true,
+                    backgroundColor: 'rgba(249, 115, 22, 0.2)', // Orange transparent
+                    borderColor: '#f97316',
+                    pointBackgroundColor: '#f97316',
+                    pointBorderColor: '#fff',
+                    pointHoverBackgroundColor: '#fff',
+                    pointHoverBorderColor: '#f97316'
+                }, {
+                    label: '과거 기술 중심 관점',
+                    data: [60, 50, 40, 95, 90], // High tech/price focus, low trust
+                    fill: true,
+                    backgroundColor: 'rgba(148, 163, 184, 0.2)',
+                    borderColor: '#94a3b8',
+                    pointBackgroundColor: '#94a3b8',
+                    pointBorderColor: '#fff',
+                    pointHoverBackgroundColor: '#fff',
+                    pointHoverBorderColor: '#94a3b8'
+                }]
+            },
+            options: {
+                plugins: {
+                    legend: { position: 'bottom' },
+                    tooltip: sharedTooltipConfig
+                },
+                scales: {
+                    r: {
+                        angleLines: { color: '#e2e8f0' },
+                        grid: { color: '#e2e8f0' },
+                        pointLabels: {
+                            font: { size: 11, weight: 'bold' },
+                            color: '#334155'
+                        },
+                        suggestedMin: 0,
+                        suggestedMax: 100
+                    }
+                }
+            }
+        });
+
+    </script>
+    
+    <!-- 
+        Justification of Visualization Choices (Embedded Note):
+        1. Anxiety Factors -> Donut Chart: Best for showing simple proportions of a whole (100% of anxiety sources).
+        2. Safety Shift -> Horizontal Bar Chart: Best for comparing two categories (Old vs New) across multiple metrics. Horizontal allows for longer labels.
+        3. One Team -> CSS Venn Diagram: Shows the intersection and relationship between three distinct entities better than any chart. No SVG used as per constraints.
+        4. Operational Flow -> CSS/Flexbox Layout: A linear process is best represented by a step-by-step diagram rather than a data chart.
+        5. Trust -> Radar Chart: Best for displaying multivariate data where we need to compare the "shape" or "profile" of two different approaches (Tech-first vs Trust-first).
+    -->
+    <!-- Palette Used: 'Brilliant Future' based on vibrant blues and oranges from the provided context options. -->
+    <!-- NEITHER Mermaid JS NOR SVG were used in this output. -->
+</body>
+</html>
