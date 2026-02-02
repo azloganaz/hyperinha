@@ -157,7 +157,7 @@
                 <div class="chart-container">
                     <canvas id="anxietyChart"></canvas>
                 </div>
-                <p class="text-center text-xs text-gray-400 mt-2">※ 운수업 PoC 기반 설문 </p>
+                <p class="text-center text-xs text-gray-400 mt-2">※ 운수업 PoC 기반 설문</p>
             </div>
         </section>
 
@@ -436,7 +436,7 @@
 
         // Chart 1: Anxiety Factors (Donut)
         const ctxAnxiety = document.getElementById('anxietyChart').getContext('2d');
-        const anxietyLabels = ['졸음 및 피로', '비/눈 등 악천후', '갑작스런 끼어들기', '골목/변수 구간'];
+        const anxietyLabels = ['졸음 및 피로 30%', '비/눈 등 악천후20%', '갑작스런 끼어들기25%', '골목/변수 구간25%'];
         const anxietyData = [30, 20, 25, 25]; // Estimated distribution based on speech emphasis
 
         new Chart(ctxAnxiety, {
